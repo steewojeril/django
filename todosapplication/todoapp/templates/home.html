@@ -1,0 +1,50 @@
+{%extends 'base.html'%}
+{%block body_block%}
+<div class="container">
+        <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            {%if messages%}
+            {%for m in messages%}
+            {%if m.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{m}}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {%endif%}
+            {%if m.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{m}}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {%endif%}
+            {%endfor%}
+            {%endif%}
+        </div>
+        <div class="col-4"></div>
+    </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <h2>welcome {{request.user}} !!! </h2>
+                <a href="{%url 'signout'%}">logout</a>
+                <a href="{%url 'add-todo'%}">Add Your Todos</a>
+                <a href="{%url 'todos-list'%}">List Todos</a>
+            </div>
+            <div class="col-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <h5>Pending Todos</h5>
+                {%for todo in todos%}
+                <div class="div">
+                    {{todo}}
+                </div>
+                {%endfor%}
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+
+{%endblock%}
